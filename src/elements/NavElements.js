@@ -8,7 +8,7 @@ export const NavWrapper = styled.nav`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  /* padding: ${props => props.theme.spacings.medium}; */
+
 
   img {
     height: 30px;

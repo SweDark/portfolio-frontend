@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavMenu from './Rightnav';
+import PageLinks from "../../constants/links"
 import { StyledBurger} from '../../elements'
 
 const Hamburger = () => {
@@ -12,7 +13,7 @@ const Hamburger = () => {
         <div />
         <div /> 
       </StyledBurger>
-      <NavMenu open={open}/>
+      <PageLinks open={open}/>
     </>
   )
 }

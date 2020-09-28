@@ -5,74 +5,51 @@
  */
 
 module.exports = {
-  /* Your site config here */
   siteMetadata: {
-    title: "My MDX Blog",
-    description: "A simple blog built with Gatsby and MDX",
-    url: "https://jesper-flodstrom-webbapplikationer-och-mobil-utveckling.netlify.app/",
-    image:
-      "https://i.imgur.com/rwEF8Tt.png",
-    twitterUsername: "@JesperFlodstrm",
+    title: "WebDev Portfolio",
+    description: "This is WebDev Portfolio Site",
     author: "Jesper Flodström",
+    twitterUsername: "@JesperFlodstrm",
+    image: "/twitter-img.png",
+    siteUrl: "https://testing-strapi-gatsby-build.netlify.app",
   },
-
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `pages`,
-        path: `${__dirname}/src/pages`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `posts`,
-        path: `${__dirname}/src/posts`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        // Available options and their defaults:
-        base64Width: 20,
-        forceBase64Format: ``, // valid formats: png,jpg,webp
-        useMozJpeg: process.env.GATSBY_JPEG_ENCODER === `MOZJPEG`,
-        stripMetadata: true,
-        defaultQuality: 90,
-        quality: 90,
-      },
-    },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        extensions: [`.md`, `.mdx`],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 1200,
-              quality: 90,
-            },
-          },
-        ],
+        name: `assets`,
+        path: `${__dirname}/src/assets/`,
       },
     },
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: `gatsby-source-strapi`,
       options: {
-        fonts: [`roboto mono`, `muli\:400,400i,700,700i`],
-        display: "swap",
+        apiURL: `http://localhost:1337`,
+        queryLimit: 1000, // Default to 100
+        //   contentTypes : `jobs`, `projects`, `blogs`,
+        //   singleType : `about`
+        //  ONLY ADD TO ARRAY IF YOU HAVE DATA IN STRAPI !!!!
+        contentTypes: [],
+        singleTypes: [],
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       {
+    //         family: `Roboto`,
+    //         variants: [`400`, `700`],
+    //       },
+    //       {
+    //         family: `Open Sans`,
+    //       },
+    //     ],
+    //   },
+    // },
   ],
 }

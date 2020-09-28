@@ -1,25 +1,21 @@
 import React from 'react';
 import { useStaticQuery, Link, graphql } from "gatsby"
-import { NavWrapper} from '../../elements'
+import { NavWrapper} from '../../elements/NavElements'
+import logo from "../../assets/logo.svg"
 import Hamburger from './Burger.jsx';
+import PageLinks from "../../constants/links"
 
-const Navigationbar = () => { 
-    const data = useStaticQuery(graphql`
-        query {
-          logo: file(relativePath: { eq: "logo.svg" }) {
-            publicURL
-          }
-        }
-      `)
+const Navbar = () => { 
 
     return (
-        <NavWrapper>
+         <NavWrapper>
             <Link to="/">
-                <img src={data.logo.publicURL} alt="My Logo" />
+                <img src={logo} alt="My Logo" />
             </Link>
+        
         <Hamburger />
-        </NavWrapper>
+         </NavWrapper>
     )
 }
 
-export default Navigationbar
+export default Navbar
